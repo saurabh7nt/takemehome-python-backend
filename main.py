@@ -26,4 +26,6 @@ def get_by_name(name):
         return jsonify({"error": "Pet not found"}), 404  # Return 404 if not found
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='0.0.0.0', debug=True)
+
+    
