@@ -1,6 +1,6 @@
 #!/bin/bash
 # Navigate to the application directory
-cd /home/python-backend/pet-app
+cd /home/ubuntu/pet-app
 
 # Activate the virtual environment
 source venv/bin/activate
