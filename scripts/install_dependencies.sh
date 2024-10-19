@@ -13,23 +13,14 @@ fi
 
 # Install Python3 and pip if they're not installed
 if ! command -v python3 &>/dev/null; then
-    sudo apt-get install -y python3
-fi
-
-if ! command -v pip3 &>/dev/null; then
-    sudo apt-get install -y python3-pip
-fi
-
-# Install virtualenv if it's not installed
-if ! pip3 show virtualenv &>/dev/null; then
-    sudo pip3 install virtualenv
+    sudo apt-get install -y python3 python3-venv python3-pip
 fi
 
 # Create a virtual environment if it doesn't exist
 cd /home/ubuntu/pet-app
 
 if [ ! -d "venv" ]; then
-  virtualenv venv
+  python3 -m venv venv
 fi
 
 # Activate the virtual environment
