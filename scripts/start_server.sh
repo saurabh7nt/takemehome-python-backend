@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Navigate to the application directory
 cd /home/ubuntu/pet-app
 
