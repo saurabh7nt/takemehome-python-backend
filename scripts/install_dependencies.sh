@@ -1,10 +1,7 @@
-#!/bin/bash
+#!/bin/bash 
 
 # Exit immediately if a command exits with a non-zero status
 set -e
-
-# Log the commands being executed
-set -x
 
 # Update the package repository
 sudo apt-get update -y
@@ -14,31 +11,26 @@ sudo apt-get install -y python3 python3-venv python3-pip
 
 # Create the directory for the application if it doesn't exist
 if [ ! -d "/home/ubuntu/pet-app" ]; then
-  echo "Creating /home/ubuntu/pet-app directory"
   sudo mkdir -p /home/ubuntu/pet-app
 fi
 
-# Navigate to the app directory
-cd /home/ubuntu/pet-app || { echo "Directory /home/ubuntu/pet-app not found"; exit 1; }
-
 # Create a virtual environment if it doesn't exist
+cd /home/ubuntu/pet-app
+
 if [ ! -d "venv" ]; then
-  echo "Creating virtual environment"
   sudo python3 -m venv venv
-else
-  echo "Virtual environment already exists"
 fi
 
 # Activate the virtual environment
-if [ -f "venv/bin/activate" ]; then
-  source venv/bin/activate
-else
-  echo "Virtual environment activation script not found"
-  exit 1
-fi
+source venv/bin/activate
 
-# Install required packages
+# Debugging: List the contents of the directory
+echo "Current directory contents:"
+ls -la
+
+# Check if the requirements.txt file exists
 if [ -f "requirements.txt" ]; then
+  echo "Installing dependencies from requirements.txt"
   pip install -r requirements.txt
 else
   echo "requirements.txt not found"
