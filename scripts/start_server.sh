@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Navigate to the application directory
-cd /home/ubuntu/pet-app
+cd /var/www/python-pet-app
 
 # Activate the virtual environment
 source venv/bin/activate
