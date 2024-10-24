@@ -7,4 +7,4 @@ cd /home/ubuntu/pet-app
 source venv/bin/activate
 
 # Start the Flask app in the background
-nohup python3 app.py > flask.log 2>&1 &
+nohup python3 main.py > flask.log 2>&1 &
