@@ -1,18 +1,14 @@
 #!/bin/bash
 
-# Create a virtual environment if it doesn't exist
 cd /var/www/python-pet-app
 
+# Check if virtual environment exists, if not create it
 if [ ! -d "venv" ]; then
   sudo python3 -m venv venv
 fi
 
 # Activate the virtual environment
 source venv/bin/activate
-
-# Debugging: List the contents of the directory
-echo "Current directory contents:"
-ls -la
 
 # Check if the requirements.txt file exists
 if [ -f "requirements.txt" ]; then
@@ -23,8 +19,16 @@ else
   exit 1
 fi
 
-# Activate the virtual environment
-source venv/bin/activate
+# Install Gunicorn if not already installed
+pip install gunicorn
 
-# Start the Flask app in the background
-nohup python3 main.py > flask.log 2>&1 &
+# Stop any running instance of the application
+if pgrep gunicorn > /dev/null
+then
+  echo "Stopping Gunicorn"
+  pkill gunicorn
+fi
+
+# Start the Flask app with Gunicorn
+echo "Starting Flask app with Gunicorn"
+nohup gunicorn --bind 0.0.0.0:5000 main:app > flask.log 2>&1 &
